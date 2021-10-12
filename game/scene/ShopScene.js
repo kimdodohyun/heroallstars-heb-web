@@ -293,7 +293,7 @@ var ShopScene = new function() {
             Client_ID: "{"+sPriId+"}",
             Client_IP: navigator.ipAddress,
             TimeStamp: converToLocalTime(),
-            Auth_Val: "tyJ5tYalSzzR/YAUXeJwAx0sSxtnevrd7DxqmjiBarc=",
+            Auth_Val: sDpsToken, //"tyJ5tYalSzzR/YAUXeJwAx0sSxtnevrd7DxqmjiBarc=",
             Api_Key: "l7xx851d12cc66dc4d2e86a461fb5a530f4a",
             Trace: "IPTV",
             Accept: "application/json; charset=utf-8"
@@ -422,7 +422,7 @@ var ShopScene = new function() {
         // step 2. 휴대폰 결제시 통신사, 휴대폰번호, 생년월일 + 주민번호 앞자리 입력 받기
 
         // checkcPurchaseStatus(productCode);
-        // getPhoneAuth(price, productCode);
+        getPhoneAuth(price, productCode);
         // purchaseProduct(authNumber);
 
         // step 3. 휴대폰 인증번호 받고 입력하기

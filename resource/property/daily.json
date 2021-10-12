@@ -1,0 +1,85 @@
+[{
+    "code":"GOLD",
+    "amount":"5000"
+},{
+    "code":"ENTRANCE_KEY",
+    "amount":"5"
+},{
+    "code":"MAGIC_STONE",
+    "amount":"5"
+},{
+    "code":"BLUE_STONE",
+    "amount":"50"
+},{
+    "code":"BLACK_STONE",
+    "amount":"50"
+},{
+    "code":"RED_STONE",
+    "amount":"50"
+},{
+    "code":"GEM",
+    "amount":"10"
+},{
+    "code":"GOLD",
+    "amount":"15000"
+},{
+    "code":"ENTRANCE_KEY",
+    "amount":"15"
+},{
+    "code":"MAGIC_STONE",
+    "amount":"10"
+},{
+    "code":"BLUE_STONE",
+    "amount":"100"
+},{
+    "code":"BLACK_STONE",
+    "amount":"100"
+},{
+    "code":"RED_STONE",
+    "amount":"100"
+},{
+    "code":"GEM",
+    "amount":"30"
+},{
+    "code":"GOLD",
+    "amount":"30000"
+},{
+    "code":"ENTRANCE_KEY",
+    "amount":"20"
+},{
+    "code":"MAGIC_STONE",
+    "amount":"15"
+},{
+    "code":"BLUE_STONE",
+    "amount":"300"
+},{
+    "code":"BLACK_STONE",
+    "amount":"300"
+},{
+    "code":"RED_STONE",
+    "amount":"300"
+},{
+    "code":"GEM",
+    "amount":"50"
+},{
+    "code":"GOLD",
+    "amount":"50000"
+},{
+    "code":"ENTRANCE_KEY",
+    "amount":"30"
+},{
+    "code":"MAGIC_STONE",
+    "amount":"20"
+},{
+    "code":"BLUE_STONE",
+    "amount":"500"
+},{
+    "code":"BLACK_STONE",
+    "amount":"500"
+},{
+    "code":"RED_STONE",
+    "amount":"500"
+},{
+    "code":"HYPER_STONE",
+    "amount":"30"
+}]

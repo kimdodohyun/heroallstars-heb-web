@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <title>HeroAllStars</title>
+    <meta name="description" content="HeroAllStars" />
+    <meta name="author" content="Kochic" />
+
+    <link rel='stylesheet' href="com/css/HMF.css" />
+    <LINK rel="SHORTCUT ICON" href="resource/favicon.ico" />
+    <script src="com/gnifrix/HNativeCode.js"></script>
+    <script src="lib/jquery-1.11.3.min.js"></script>
+    <script src="lib/json2.js"></script>
+    <script src="lib/zipReader.js"></script>
+    <script src="lib/inflate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="HMFLoader.js"></script>
+    <script type="text/javascript">
+        var ISWEB = false;
+        var isOnPopup = false;
+        // 환경에따라 모드 전환
+        console.info("[HMF] Platform  === " + navigator.platform);
+        console.info("[HMF] UserAgent === " + navigator.userAgent);
+        console.info("[HMF] AppName   === " + navigator.appName + " " + navigator.appCodeName);
+        if (navigator.userAgent.substring(0, 4) == "OIPF" || navigator.appName == "AltiBrowser" || navigator.vendor.substring(0, 8) == "Alticast") ISWEB = false;
+        else {
+            ISWEB = true;
+            $.getJSON("http://jsonip.com?callback=?", function(data) {
+                navigator.ipAddress = data.ip;
+                console.info("[HMF] IPAddress === " + navigator.ipAddress);
+            });
+        }
+    </script>
+    
+</head>
+   
+<body style="background-color: black">
+    <div id="SCENE">
+        <canvas id="H_CANVAS">
+            Your browser doesn't support the Canvas tag
+        </canvas>
+    </div>
+    <!-- TOP LAYER-->
+    <div id="TOP">
+        <canvas class="loadingbar" id="LOADING_BAR">
+            Your browser doesn't support the Canvas tag
+        </canvas>
+    </div>
+
+    <div id="POP">
+        <iframe style="position: absolute; visibility: hidden;" type="text/html" frameborder="0" width="1280px" height="720px" id="onPop" name="onPop"></iframe>
+    </div>
+<!-- KT VOD 및 로딩 관련 BTV 포팅 시 주석처리
+    <object style="position:absolute; visibility: hidden;" type="video/mpeg" width="1280" height="720" id="vod"></object>
+    <div id="loading" style="position: absolute; left:981px; top:10px; width:361px; height: 150px;">
+        <img id="loading_banner" style="position: absolute; left: 0px; top:0px" src="./resource/update/loading/loading_banner_0.png"/>
+        <img id="loading_bar_back" style="position: absolute; left: 0px; top:118px;"; src="./resource/update/loading/loading_bar_back.png"/>
+        <img id="loading_bar" style="position: absolute; left: 10px; top:128px; height: 6px" src="./resource/update/loading/loading_bar.png"/>
+    </div>
+-->
+</body>
+<!-- KT VOD 및 로딩 관련 BTV 포팅 시 주석처리
+<script type="text/javascript">
+    var ran = Math.floor(Math.random() * 2); // 로딩의 갯수로 랜덤을 돌린다.
+    var edit = document.getElementById("loading_banner");
+    edit.src = "./resource/update/loading/loading_banner_" + ran + ".png";
+</script>
+-->
+</html>

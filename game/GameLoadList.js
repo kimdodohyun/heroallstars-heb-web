@@ -12,6 +12,12 @@ function loadStarmonScripts(onload) {
         "com/hgnifrix/skkwon/util/NumberFontImage.js",
         "com/hgnifrix/skkwon/util/NumberFontImg_5x2.js",
 
+        /* Support Loading */
+        "game/support/Panner.js",
+        "game/support/HRandom.js",
+        "game/support/PlayZapi.js",
+		// "game/support/EventHelper.js"
+
 //        "game/NetManager.js",
         /* Unit Module Loading */
         "game/unit/Unit.js",
@@ -55,6 +61,9 @@ function loadStarmonScripts(onload) {
         "game/popup/DailyItemMonthPopup.js",
         "game/popup/SkillEffectPopup.js",
         "game/popup/SummonChancePopup.js",
+        "game/popup/PlayZPurchasePopup.js",
+        "game/popup/PlayZClausePopup.js",
+        "game/popup/PlayZVerificationPopup.js",
         
         /* Scene Loading */
         "game/scene/EntryScene.js",
@@ -69,10 +78,6 @@ function loadStarmonScripts(onload) {
         "game/scene/ShopScene.js",
         "game/scene/RaidScene.js",
         "game/scene/MonsterBookScene.js",
-        /* Support Loading */
-        "game/support/Panner.js",
-        "game/support/HRandom.js",
-		// "game/support/EventHelper.js"
         
         /* Tutorial Loading */
         "game/tutorial/TutorialManager.js",
@@ -121,6 +126,9 @@ function loadStarmonScripts(onload) {
         POPUP.POP_SKILLEFFECT = SkillEffectPopup;
         POPUP.POP_SUMMONCHANCE = SummonChancePopup;
 
+        POPUP.POP_PLAYZ_PURCHASE = PlayZPurchasePopup;
+        POPUP.POP_PLAYZ_CLAUSE = PlayZClausePopup;
+        POPUP.POP_PLAYZ_VERIFICATION = PlayZVerificationPopup;
         onload();
     }, function (err) {
         GameManager.openDisconnectPopup("JS Load Fail!!!!", this);

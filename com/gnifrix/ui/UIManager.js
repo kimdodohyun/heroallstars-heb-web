@@ -34,6 +34,10 @@ function Rev_DispatchKeyCode(response) {
             // appMgr.getMessage0BtnPopup("앱 실행중에 지원하지 않는 기능입니다.");
             // PopupMgr.openPopup(POPUP.POP_MSG_0BTN, null, 1500);
             break;
+        case 23:
+            var obj = {keyCode:keyCode};
+            UIMgr.HandleKeyEvent(obj);
+            break;
             
         case 285:
         case 385:
@@ -71,6 +75,7 @@ var UIMgr = new function () {
     this.AUTO_SCREEN = true;
     this.HAS_LOADINGBAR = false;
     this.DEFAULT_FONT = "'myFont'";
+    this.PLAYZ_FONT = "'nanum'";
     this.AUTO_SCREEN_HOTKEY = 120;
 
     this.toString = function () {

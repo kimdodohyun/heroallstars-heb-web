@@ -72,7 +72,7 @@ var ShopScene = new function() {
         var onloadCnt = 0;
         var checkOnload = function () {
             onloadCnt++;
-            if (onloadCnt == 3) {
+            if (onloadCnt == 6) {
                 onload();
             }
         };
@@ -80,6 +80,10 @@ var ShopScene = new function() {
         setResource(checkOnload);
         POPUP.POP_PURCHASE.getInstance().setResource(checkOnload);
         POPUP.POP_INPUTPASSWORD.getInstance().setResource(checkOnload);
+
+        POPUP.POP_PLAYZ_PURCHASE.getInstance().setResource(checkOnload);
+        POPUP.POP_PLAYZ_CLAUSE.getInstance().setResource(checkOnload);
+        POPUP.POP_PLAYZ_VERIFICATION.getInstance().setResource(checkOnload);
     };
     
     var setResource = function(onload) {
@@ -267,143 +271,18 @@ var ShopScene = new function() {
                 break;
 
             case 4:
-                console.error("isOnPopup >> " + isOnPopup);
-                document.getElementById("onPop").src="http://61.251.167.74/btv/inappinfo/index.html?stbId=" + sPriId 
-                + "&userKey=" + GF_NET.userKey 
-                + "&svcaId=" + GF_NET.svcaId
-                + "&userId=" + sUserName;
-                document.getElementById("onPop").style.visibility = "visible";
-                isOnPopup = true;
+                // console.error("isOnPopup >> " + isOnPopup);
+                // // document.getElementById("onPop").src="http://61.251.167.74/btv/inappinfo/index.html?stbId=" + sPriId 
+                // // + "&userKey=" + GF_NET.userKey 
+                // // + "&svcaId=" + GF_NET.svcaId
+                // // + "&userId=" + sUserName;
+
+                // document.getElementById("onPop").src="http://61.251.167.91/html5/Btv/heb/inputtest/index.html";
+                // document.getElementById("onPop").style.visibility = "visible";
+                // isOnPopup = true;
                 return;
         }
     };
-
-    function converToLocalTime() {
-        var d = new Date(); 
-        return d.getFullYear() + _pad((1 + d.getMonth()), "2") + _pad(d.getDate(), "2") + d.getHours() + _pad(d.getMinutes(), "2") + d.getSeconds(); // +"."+ d.getMilliseconds();       
-    }
-
-    function _pad(n, width) {
-        n = n + ''; 
-        return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n; 
-    }
-
-    var checkcPurchaseStatus = function(productId) {
-        var reqHeader = {
-            Client_ID: "{"+sPriId+"}",
-            Client_IP: navigator.ipAddress,
-            TimeStamp: converToLocalTime(),
-            Auth_Val: sDpsToken, //"tyJ5tYalSzzR/YAUXeJwAx0sSxtnevrd7DxqmjiBarc=",
-            Api_Key: "l7xx851d12cc66dc4d2e86a461fb5a530f4a",
-            Trace: "IPTV",
-            Accept: "application/json; charset=utf-8"
-        };
-        var strHeader = JSON.stringify(reqHeader);
-
-        var reqUrl = "https://agw.sk-iptv.com:8443/eps/v5/payment/check/" + productId;
-
-        var reqParam = "if=IF-EPS-021&"
-        + "ver=5.0&"
-        + "ui_name=HEBEPS&"
-        + "client_name=HEBEPS&"
-        + "response_format=json&"
-        + "stb_id=" + encodeURIComponent("{" + sPriId + "}") + "&"
-        + "mac=" + encodeURIComponent(sHostMac);
-
-        commonGameApiGet(strHeader, reqUrl, reqParam);
-    };
-
-    var getPhoneAuth = function(amount, productId) {
-
-        var reqUrl = "http://61.252.137.148/commongame-api/btv/replace/action/";
-        var preKey = "SK";
-        var iv = "1161266980123456";
-        var requestDateTime = converToLocalTime();
-        var keyUTF = CryptoJS.enc.Utf8.parse(preKey + requestDateTime);
-        var ivUTF = CryptoJS.enc.Utf8.parse(iv);
-
-        var reqHeader = {
-            Client_ID: "{"+sPriId+"}",
-            Client_IP: navigator.ipAddress,
-            TimeStamp: converToLocalTime(),
-            Auth_Val: "tyJ5tYalSzzR/YAUXeJwAx0sSxtnevrd7DxqmjiBarc=",
-            Api_Key: "l7xx851d12cc66dc4d2e86a461fb5a530f4a",
-            Trace: "IPTV",
-            Accept: "application/json;charset=utf-8"
-        };
-
-        var reqPhone = {
-            corpCode: "KTF",
-            registNumber: "8809161",
-            phoneNumber: "01047838816",
-            amount: amount
-        };
-
-        var strPhone = JSON.stringify(reqPhone);
-        var aesPhone = CryptoJS.AES.encrypt(strPhone, keyUTF, {iv: ivUTF}).toString();
-
-        var reqBody = {
-            if: "IF-EPS-105",
-            ver: "5.0",
-            ui_name: "HEBEPS",
-            client_name: "HEBEPS",
-            response_format: "json",
-            stb_id: "{"+sPriId+"}",
-            mac: sHostMac,
-            productId: productId,
-            requestDateTime: requestDateTime,
-            phoneData: aesPhone
-        }
-
-        var strHeader = JSON.stringify(reqHeader);
-        var strBody = JSON.stringify(reqBody);
-
-        commonGameApiPost(strHeader, reqUrl, strBody);
-    }
-
-    var purchaseProduct = function(authNumber) {
-
-    }
-
-    var commonGameApiGet = function(reqHeader, reqUrl, reqParam) {
-        $.ajax({
-            type: "GET",
-            url: "http://61.252.137.148/commongame-api/btv/replace/header/" + encodeURIComponent(btoa(reqHeader))
-            + "/url/" + encodeURIComponent(btoa(reqUrl))
-            + "/param/" + encodeURIComponent(btoa(reqParam)),
-            contentType: "application/json; charset=utf-8",
-            success: function(resData) {
-                console.error("commonGameApi success >> " + JSON.stringify(resData));
-            },
-            error: function(err) {
-                console.error("commonGameApi error >> " + JSON.stringify(err));
-            }
-        });
-    }
-
-    var commonGameApiPost = function(reqHeader, reqUrl, reqBody) {
-        $.ajax({
-            type: "POST",
-            url: reqUrl,
-            data: JSON.stringify({
-                urlPath: "https://agw.sk-iptv.com:8443/eps/v5/payment/phone/auth?method=POST",
-                header: reqHeader,
-                body: reqBody
-            }),
-            contentType: "application/json;charset=utf-8",
-            success: function(resData) {
-                console.error("commonGameApiPost success >> " + JSON.stringify(resData));
-            },
-            error: function(err) {
-                console.error("commonGameApiPost error >> " + JSON.stringify(err));
-            }
-        })
-    }
-
-
-
-
-
     
     var enterKeyActionForGem = function() {
         var cashProduct = ItemManager.getCashProducts()[focusX];
@@ -411,6 +290,8 @@ var ShopScene = new function() {
         var amount = cashProduct.getChargeAmount();
         var price = cashProduct.getAmount();
         var productCode = cashProduct.getMainCode();
+        var productName = cashProduct.getProdName();
+        var prodCode = cashProduct.getProdCode();
 
         if (ItemManager.itemFullCheck(code, Number(amount))) {
             isKeyLock = false;
@@ -419,15 +300,17 @@ var ShopScene = new function() {
         }
 
         // step 1. 신용카드 또는 휴대폰 결제 선택
-        // step 2. 휴대폰 결제시 통신사, 휴대폰번호, 생년월일 + 주민번호 앞자리 입력 받기
+        playApi.checkcPurchaseStatus(productCode, function() {
+            isKeyLock = false;
+            playApi.setProductInfo(productName, productCode, prodCode, amount, price);
+            PopupMgr.openPopup(POPUP.POP_PLAYZ_PURCHASE);
+        }, function(err) {
+            // 안드로이드 토스트팝업
+            isKeyLock = false;
+            PopupMgr.openPopup(appMgr.getMessage0BtnPopup("선택하신 상품이 준비되어있지 않습니다." + err), null, 1500);
+            console.error("checkPUrchaseStatus Toast >> " + err);
+        });
 
-        // checkcPurchaseStatus(productCode);
-        getPhoneAuth(price, productCode);
-        // purchaseProduct(authNumber);
-
-        // step 3. 휴대폰 인증번호 받고 입력하기
-        // step 4. 결제 프로세스 진행
-        
         // isKeyLock = false;
         // POPUP.POP_INPUTPASSWORD.getInstance().setProduct(ItemManager.getCashProducts()[focusX].getProdCode(), amount, ItemManager.getCashProducts()[focusX].getAmount());
         // PopupMgr.openPopup(POPUP.POP_INPUTPASSWORD);

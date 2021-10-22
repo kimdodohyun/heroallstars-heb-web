@@ -23,6 +23,7 @@ var DisconnectPopup = new function() {
             return "Disconnect Popup";
         },
         init: function(onload) {
+            document.getElementById("PLAYZ").style.visibility = "hidden";
             onload();
         },
         start: function() {
@@ -35,6 +36,7 @@ var DisconnectPopup = new function() {
             g.drawImage(errorImg, (SCREEN_WIDTH / 2) - (errorImg.width / 2), (SCREEN_HEIGHT / 2) - (errorImg.height / 2));
         },
         stop: function() {
+            document.getElementById("PLAYZ").style.visibility = "visible";
             errorImg = null;
         },
         onKeyPressed: function(key) {

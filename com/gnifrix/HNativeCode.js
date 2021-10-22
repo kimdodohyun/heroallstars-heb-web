@@ -79,6 +79,14 @@ CanvasRenderingContext2D.prototype.setFont = function(fontSize, option) {
     temp = null;
 };
 
+CanvasRenderingContext2D.prototype.setPlayZFont = function(fontSize, option) {
+    var temp = fontSize.toString() + "px " + UIMgr.PLAYZ_FONT;
+    if (option != null)
+        temp = option + " " + fontSize.toString() + "px " + UIMgr.PLAYZ_FONT;
+    this.font = temp;
+    temp = null;
+};
+
 /*
  * ParseInt
  */

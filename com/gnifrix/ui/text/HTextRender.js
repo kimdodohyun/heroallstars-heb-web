@@ -92,6 +92,16 @@ var HTextRender = new function () {
 //        ctx.strokeText(str, x - 4, y - 2);
 //        ctx.restore();
     };
+
+    this.playZRender = function(_ctx, str, x, y, align) {
+        ctx = _ctx;
+        if (align != null)
+            x -= ctx.measureText(str).width * align;
+        
+        ctx.save();
+        ctx.fillText(str, x + 2, y + 2);
+        ctx.restore();
+    };
     
     this.oriRenderUp = function(_ctx, str, x, y, align) {
         ctx = _ctx;

@@ -77,6 +77,7 @@ var RENDER1280 = true,
     COLOR_RANK_1 = "rgb(248, 239, 0)",
     COLOR_RANK_2 = "rgb(82, 224, 22)",
     COLOR_RANK_3 = "rgb(0, 210, 248)",
+    COLOR_PURPLE = "#641DC5",
 // Game Mode Type ////////////////////////////////////////////////////////
     GAME_MODE_DEFENCE = 0,
     GAME_MODE_ARENA = 1,

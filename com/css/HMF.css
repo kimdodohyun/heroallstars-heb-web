@@ -12,6 +12,11 @@ img {
     src: url(BMDOHYEON_otf.otf);
 }
 
+@font-face {
+    font-family: nanum;
+    src: url(NanumSquareR.otf);
+}
+
 #canvas {
     width: 100%;
     height : 100%;

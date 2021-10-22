@@ -51,6 +51,7 @@ window.addEventListener('load', function() {
     ];
     
     if (typeof android === "undefined") {
+        console.error("android is undefined");
         jsArr.push("com/hgnifrix/android.js");
     }
 

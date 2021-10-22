@@ -36,6 +36,7 @@ function MainframeSetting() {
     //
     // 기본 폰트 (setFont or setColor 함수 사용시에만 적용되는 폰트)
     UIMgr.DEFAULT_FONT = "'myFont'";
+    UIMgr.PLAYZ_FONT = "'nanum'";
 
     // 팝업 활성화 시 알파값
     PopupMgr.POPUP_BACK_COLOR = "rgba(0,0,0,0.50)";
